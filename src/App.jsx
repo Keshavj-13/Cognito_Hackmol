@@ -22,7 +22,7 @@ export default function App() {
                     <Route path={"exam-devta/response"} element={<ExamResponse />} />
                     <Route path={"senior-devta/response"} element={<SeniorRisponse />} />
                     <Route path={"/quiz"} element={<Quiz/>} />
-                    <Route path={"/login"} element={<LoginEndPage />} />
+                    {/*<Route path={"/login"} element={<LoginPage />} />*/}
                 </Routes>
 
             </BrowserRouter>
