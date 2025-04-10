@@ -142,6 +142,7 @@ import {
 import { motion } from "framer-motion"; // Corrected import
 import { cn } from "@/lib/utils";
 import {useAuth} from "@/contexts/authContext";
+import GlowingEffectDemo from "@/components/ui/GlowingEffectDemo.jsx";
 // import {auth} from "@/components/firebase.js";
 // import * as currentUser from "@material-tailwind/react/components/SpeedDial/index.js";
 
@@ -159,7 +160,7 @@ export default function SidebarDemo() {
             label: "Profile",
             href: "#",
             icon: (
-                <IconUserBolt className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+                <IconUserBolt className="h-5 w-5 shrink-0 100 dark:text-neutral-200 text-neutral-700" />
             ),
         },
         {
@@ -182,13 +183,13 @@ export default function SidebarDemo() {
     return (
         <div
             className={cn(
-                "mx-auto flex w-full flex-1 flex-col overflow-hidden rounded-md border border-neutral-200 bg-gray-100 md:flex-row dark:border-neutral-700 dark:bg-neutral-800",
+                "mx-auto flex w-full flex-1 flex-col overflow-hidden rounded-md border border-neutral-700 bg-neutral-400 md:flex-row dark:border-neutral-700 dark:bg-neutral-800",
                 "h-screen" // Changed from h-[60vh] to h-screen for full height
             )}
         >
             <Sidebar open={open} setOpen={setOpen} animate={false}>
                 <SidebarBody className="justify-between gap-10">
-                    <div className="flex flex-1 flex-col overflow-x-hidden overflow-y-auto">
+                    <div className="flex flex-1 flex-col overflow-x-hidden overflow-y-auto bg-neutral-400 text-neutral-700 ">
                         <Logo />
                         <div className="mt-8 flex flex-col gap-2">
                             {links.map((link, idx) => (
@@ -229,7 +230,7 @@ export const Logo = () => {
             <motion.span
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="font-medium whitespace-pre text-black dark:text-white text-[2rem]"
+                className="font-medium whitespace-pre text-neutral-700 dark:text-white text-[2rem]"
             >
                 Hi {
                     currentUser.displayName
@@ -251,23 +252,24 @@ export const LogoIcon = () => {
 const Dashboard = () => {
     return (
         <div className="flex flex-1">
-            <div className="flex h-full w-full flex-1 flex-col gap-2 rounded-tl-2xl border border-neutral-200 bg-white p-2 md:p-10 dark:border-neutral-700 dark:bg-neutral-900">
-                <div className="flex gap-2">
-                    {[...new Array(4)].map((i, idx) => (
-                        <div
-                            key={"first-array-demo-2" + idx}
-                            className="h-20 w-full animate-pulse rounded-lg bg-gray-100 dark:bg-neutral-800"
-                        ></div>
-                    ))}
-                </div>
-                <div className="flex flex-1 gap-2">
-                    {[...new Array(2)].map((i, idx) => (
-                        <div
-                            key={"second-array-demo-2" + idx}
-                            className="h-full w-full animate-pulse rounded-lg bg-gray-100 dark:bg-neutral-800"
-                        ></div>
-                    ))}
-                </div>
+            <div className="flex h-full w-full flex-1 flex-col gap-2 rounded-tl-2xl  bg-neutral-800 p-2 md:p-10 dark:border-neutral-700 dark:bg-neutral-900">
+                {/*<div className="flex gap-2">*/}
+                {/*    {[...new Array(4)].map((i, idx) => (*/}
+                {/*        <div*/}
+                {/*            key={"first-array-demo-2" + idx}*/}
+                {/*            className="h-20 w-full animate-pulse rounded-lg bg-gray-100 dark:bg-neutral-800"*/}
+                {/*        ></div>*/}
+                {/*    ))}*/}
+                {/*</div>*/}
+                {/*<div className="flex flex-1 gap-2">*/}
+                {/*    {[...new Array(2)].map((i, idx) => (*/}
+                {/*        <div*/}
+                {/*            key={"second-array-demo-2" + idx}*/}
+                {/*            className="h-full w-full animate-pulse rounded-lg bg-gray-100 dark:bg-neutral-800"*/}
+                {/*        ></div>*/}
+                {/*    ))}*/}
+                {/*</div>*/}
+                <GlowingEffectDemo />
             </div>
         </div>
     );

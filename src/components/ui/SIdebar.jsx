@@ -54,7 +54,7 @@ export const DesktopSidebar = ({ className, children, ...props }) => {
     return (
         <motion.div
             className={cn(
-                "h-full px-4 py-4 hidden md:flex md:flex-col bg-neutral-100 dark:bg-neutral-800 w-[300px] shrink-0",
+                "h-full px-4 py-4 hidden md:flex md:flex-col bg-neutral-400 text-white dark:bg-neutral-400 w-[300px] shrink-0",
                 className
             )}
             animate={{
@@ -80,7 +80,7 @@ export const MobileSidebar = ({ className, children, ...props }) => {
         >
             <div className="flex justify-end z-20 w-full">
                 <IconMenu2
-                    className="text-neutral-800 dark:text-neutral-200"
+                    className="text-neutral-700 dark:text-neutral-200"
                     onClick={() => setOpen(!open)}
                 />
             </div>
@@ -100,7 +100,7 @@ export const MobileSidebar = ({ className, children, ...props }) => {
                         )}
                     >
                         <div
-                            className="absolute right-10 top-10 z-50 text-neutral-800 dark:text-neutral-200"
+                            className="absolute right-10 top-10 z-50 text-neutral-700 dark:text-white"
                             onClick={() => setOpen(!open)}
                         >
                             <IconX />
