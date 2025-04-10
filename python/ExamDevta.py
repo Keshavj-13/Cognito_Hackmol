@@ -24,7 +24,6 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 CORS(app, supports_credentials=True)
 
 # ========== VideoText.py Components ==========
-
 def generate_audio(text, filename):
     text = (
         text.replace('???', "'")
@@ -53,18 +52,18 @@ def split_text_into_sentences(text):
 def generate_video(text, audio_file, output_file="output.mp4"):
     width, height = 1280, 720  # Video dimensions
     fps = 30  # Frames per second
-    background_video = "C:\\Users\\ASUS\\Videos\\biology.mp4"
+    background_video = "biology.mp4"
 
     # Load generated audio
     audio = AudioSegment.from_file(audio_file)
     sentences = split_text_into_sentences(text)
     sentence_durations = []
-
+    
     for sentence in sentences:
         sentence_audio = generate_audio(sentence, "temp_audio.mp3")
         sentence_duration = len(AudioSegment.from_file(sentence_audio)) / 1000
         sentence_durations.append(sentence_duration)
-        os.remove(sentence_audio)  # Cleanup temp audio
+        os.remove(sentence_audio)  
 
     fourcc = cv2.VideoWriter_fourcc(*"mp4v")
     video = cv2.VideoWriter(output_file, fourcc, fps, (width, height))
@@ -87,6 +86,7 @@ def generate_video(text, audio_file, output_file="output.mp4"):
     frame_idx = 0  # To loop background
 
     for sentence, duration in zip(sentences, sentence_durations):
+        frame = np.zeros((height, width, 3), dtype=np.uint8)  
         words = sentence.split()
         lines = []
         current_line = []
@@ -119,6 +119,20 @@ def generate_video(text, audio_file, output_file="output.mp4"):
         # Adjust for last line's spacing
         total_text_height -= line_spacing
         start_y = (height - total_text_height) // 2
+        
+        for i, line in enumerate(lines):
+            text_size = cv2.getTextSize(line, font, font_scale, font_thickness)[0]
+            text_x = (width - text_size[0]) // 2
+            text_y = start_y + i * (font_scale * 50 + line_spacing)
+            cv2.putText(frame, line, (int(text_x), int(text_y)), font, font_scale, (255, 255, 255), font_thickness, cv2.LINE_AA)
+
+        watermark_text = "ExamDevta"
+        watermark_font_scale = 0.8
+        watermark_thickness = 2
+        watermark_size = cv2.getTextSize(watermark_text, font, watermark_font_scale, watermark_thickness)[0]
+        watermark_x = width - watermark_size[0] - 20  
+        watermark_y = 30  
+        cv2.putText(frame, watermark_text, (watermark_x, watermark_y), font, watermark_font_scale, (255, 255, 255), watermark_thickness, cv2.LINE_AA)
 
         for _ in range(int(fps * duration)):
             ret, frame = bg_cap.read()
@@ -147,7 +161,6 @@ def generate_video(text, audio_file, output_file="output.mp4"):
 
             video.write(frame)
 
-    # Release resources
     video.release()
     bg_cap.release()
 
@@ -179,7 +192,6 @@ def combine_audio_and_video(video_file, audio_file, output_file):
         time.sleep(1)  # Allow OS to release file handles
     
     return output_file
-
 
 # ========== ganeev3.py Components ==========
 # Constants
@@ -263,13 +275,8 @@ def generate_video_from_text():
 
 @app.route("/summarize", methods=["POST"])
 def summarize_videos():
-    data = request.get_json(force=True)  # Force parse even if charset isn't specified
+    data = request.get_json()
     youtube_urls = data.get("urls", [])
-    text = data.get("text", "")
-    
-    # Ensure UTF-8 encoding at reception point
-    if isinstance(text, bytes):
-        text = text.decode('utf-8', errors='replace')
     
     if not youtube_urls or not isinstance(youtube_urls, list):
         return jsonify({"error": "Missing or invalid YouTube URLs"}), 400
@@ -310,34 +317,20 @@ def download(filename):
 
 @app.route("/summarize_and_generate", methods=["POST"])
 def summarize_and_generate():
-    try:
-        data = request.get_json(force=True)
-        youtube_urls = data.get("urls", [])
-        direct_text = data.get("text", "")
+    data = request.get_json()
+    youtube_urls = data.get("urls", [])
+    
+    if not youtube_urls or not isinstance(youtube_urls, list):
+        return jsonify({"error": "Missing or invalid YouTube URLs"}), 400
 
-        # Handle text encoding for direct input
-        if isinstance(direct_text, bytes):
-            direct_text = direct_text.decode('utf-8', errors='replace')
-        direct_text = direct_text.replace('???', "'").replace('�', "'")
-
-        combined_text = direct_text
-
-        # Process YouTube URLs if provided
-        if youtube_urls:
-            if not isinstance(youtube_urls, list):
-                return jsonify({"error": "URLs must be provided as a list"}), 400
-
-            with concurrent.futures.ThreadPoolExecutor() as executor:
-                futures = {
-                    executor.submit(get_video_transcript, extract_video_id(url)): url 
-                    for url in youtube_urls
-                }
-                for future in concurrent.futures.as_completed(futures):
-                    transcript = future.result()
-                    if transcript:
-                        # Clean transcript text
-                        clean_transcript = transcript.replace('???', "'").replace('�', "'")
-                        combined_text += " " + clean_transcript
+    # Generate summary and process topics
+    combined_text = ""
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        futures = {executor.submit(get_video_transcript, extract_video_id(url)): url for url in youtube_urls}
+        for future in concurrent.futures.as_completed(futures):
+            transcript = future.result()
+            if transcript:
+                combined_text += transcript + " "
 
         if not combined_text.strip():
             return jsonify({"error": "No valid input text or transcripts found"}), 400
@@ -393,23 +386,6 @@ def summarize_and_generate():
         "topic_summaries": topic_summaries,
         "video_url": f"{url_for('download', filename=f'final_video_{unique_id}.mp4', _external=True)}?t={int(time.time())}"
     })
-
-    except Exception as e:
-        # Emergency cleanup
-        error_id = unique_id if 'unique_id' in locals() else 'unknown'
-        final_output = os.path.join(UPLOAD_FOLDER, f"final_video_{error_id}.mp4")
-        
-        for path in [audio_path, video_path, final_output]:
-            try:
-                if path and os.path.exists(path):
-                    os.remove(path)
-            except Exception as cleanup_error:
-                print(f"Cleanup failed for {path}: {cleanup_error}")
-
-        return jsonify({
-            "error": f"Video generation failed: {str(e)}",
-            "details": "All temporary files have been cleaned up"
-        }), 500
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -25,7 +25,7 @@ function Nav({ className }) {
                         <HoveredLink href="/idation">IDIATION</HoveredLink>
                         <HoveredLink href="/modularity">MODULARITY</HoveredLink>
                         <HoveredLink href="/technology">TECHNOLOGYAA!</HoveredLink>
-                        <HoveredLink href="/modules">AI-MODULES</HoveredLink>
+                        {/*<HoveredLink href="/modules">AI-MODULES</HoveredLink>*/}
                     </div>
                 </Navbar>
 
