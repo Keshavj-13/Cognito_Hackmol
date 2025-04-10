@@ -44,9 +44,9 @@ def translate_to_language(summary, language):
     """Translate the summary into a specified language."""
     return summarize_text(summary, f"Translate this summary into {language}: ")
 
-def generate_story(summary):
-    """Convert the summary into a story for children."""
-    return summarize_text(summary, "Convert this summary into a fun and engaging story for kids with simple English:")
+# def generate_story(summary):
+#     """Convert the summary into a story for children."""
+#     return summarize_text(summary, "Convert this summary into a fun and engaging story for kids with simple English:")
 
 # Routes
 @app.route("/summarize", methods=["POST"])
@@ -71,11 +71,11 @@ def summarize_videos():
                 summary = summarize_text(transcript, "Summarize this YouTube transcript: ")
                 simple_summary = simplify_summary(summary)
                 translated_summary = translate_to_language(simple_summary, language)
-                story_summary = generate_story(summary)
+                # story_summary = generate_story(summary)
                 individual_summaries[url] = {
                     "simple_summary": simple_summary,
                     "translated_summary": translated_summary,
-                    "story_summary": story_summary,
+                    # "story_summary": story_summary,
                 }
             else:
                 individual_summaries[url] = {"error": f"Could not retrieve transcript for {url}"}
@@ -88,7 +88,7 @@ def summarize_videos():
             "combined_summary": {
                 "simple": simplify_summary(combined_summary),
                 "translated": translate_to_language(simplify_summary(combined_summary), language),
-                "story": generate_story(combined_summary),
+                # "story": generate_story(combined_summary),
             },
             "topic_wise_summary": {
                 "simple": simplify_summary(topic_wise_summary),
