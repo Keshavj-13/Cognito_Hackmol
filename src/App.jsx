@@ -7,7 +7,7 @@ import Quiz from "./components/Quiz.jsx";
 import JuniorDevta from "./components/JuniorDevta.jsx";
 import SeniorDevta from "./components/SeniorDevta.jsx";
 import SeniorRisponse from "./components/SeniorRisponse.jsx";
-// import LoginPage from "./components/LoginPage.jsx";
+import LoginEndPage from "./components/LoginEndPage.jsx";
 
 export default function App() {
     return(
@@ -22,7 +22,7 @@ export default function App() {
                     <Route path={"exam-devta/response"} element={<ExamResponse />} />
                     <Route path={"senior-devta/response"} element={<SeniorRisponse />} />
                     <Route path={"/quiz"} element={<Quiz/>} />
-                    {/*<Route path={"/login"} element={<LoginPage />} />*/}
+                    <Route path={"/login"} element={<LoginEndPage />} />
                 </Routes>
 
             </BrowserRouter>
