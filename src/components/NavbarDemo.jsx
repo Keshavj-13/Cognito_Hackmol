@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { HoveredLink, Menu, Navbar, ProductItem } from "./ui/Navbar.jsx";
 
-// Utility function for conditional class names (if needed)
 const cn = (...classes) => classes.filter(Boolean).join(" ");
 
 export default function NavbarDemo() {
@@ -18,14 +17,19 @@ function Nav({ className }) {
     const [active, setActive] = useState(null);
 
     return (
-        <div className={cn("fixed top-10 inset-x-0 max-w-2xl mx-auto z-50 ", className)}>
+        <div className={cn(
+            "fixed top-10 inset-x-0 max-w-2xl mx-auto z-50",
+            "shadow-[4px_4px_12px_rgba(0,0,0,0.08)] dark:shadow-[5px_5px_18px_rgba(0,0,0,0.25)]",
+            "rounded-[37px] border border-gray-500 dark:border-neutral-700", // Grey borders
+            "bg-gray-600/95 dark:bg-neutral-900/95 backdrop-blur-sm",
+            className
+        )}>
             <Menu setActive={setActive}>
                 <Navbar setActive={setActive} active={active} item="About Us">
                     <div className="flex flex-col space-y-4 text-sm">
                         <HoveredLink href="/ideation">IDIATION</HoveredLink>
                         <HoveredLink href="/modularity">MODULARITY</HoveredLink>
                         <HoveredLink href="/technology">TECHNOLOGYAA!</HoveredLink>
-                        {/*<HoveredLink href="/modules">AI-MODULES</HoveredLink>*/}
                     </div>
                 </Navbar>
 
@@ -64,7 +68,6 @@ function Nav({ className }) {
                         <HoveredLink href="http://localhost:5173/quiz">PHYCOMETRICS</HoveredLink>
                         <HoveredLink href="/report">YOUR-REPORT</HoveredLink>
                         <HoveredLink href="/package">PACKAGE</HoveredLink>
-                        {/*<HoveredLink href="/logout">LOGOUT</HoveredLink>*/}
                     </div>
                 </Navbar>
             </Menu>

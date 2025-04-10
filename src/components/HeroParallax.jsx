@@ -53,22 +53,26 @@ export const Header = () => {
             <h1 className="text-2xl md:text-7xl font-bold">THE <br/> <div className={"text-[6rem] text-[#d79921]"}>STUDY LOK</div></h1>
             <p className="max-w-2xl text-base md:text-xl mt-8">
                 {/*Whether you're a student, professional or lifelong learner,so at STUDY LOK*/}
-                <span className={"text-[2.5rem]"}> Let's <FlipWords words={words} />
-                knowledge</span>
+                <span className="text-[2.5rem]">
+    Let's{" "}
+                    <FlipWords
+                        words={words}
+                        className="text-[#a97a1c] opacity-80"  // Pass directly to component
+                    />
+    knowledge
+</span>
 
             </p>
         </div>
     );
 };
-
 export const ProductCard = ({ product, translate }) => {
     return (
         <motion.div
             style={{ x: translate }}
-            whileHover={{ y: -20 }}
-            className="group h-96 w-[30rem] relative flex-shrink-0"
+            className="h-96 w-[30rem] relative flex-shrink-0"
         >
-            <a href={product.link} className="block group-hover:shadow-2xl">
+            <a href={product.link}>
                 <img
                     src={product.thumbnail}
                     height="600"
@@ -77,10 +81,6 @@ export const ProductCard = ({ product, translate }) => {
                     alt={product.title}
                 />
             </a>
-            <div className="absolute inset-0 h-full w-full opacity-0 group-hover:opacity-80 bg-black"></div>
-            <h2 className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 text-white">
-                {product.title}
-            </h2>
         </motion.div>
     );
 };

@@ -40,7 +40,8 @@ const FloatingDockMobile = ({ items, className }) => {
                             >
                                 <Link
                                     to={item.href}
-                                    className="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-900 flex items-center justify-center shadow-md shadow-gray-200 dark:shadow-neutral-700"
+                                    className="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-900 flex items-center justify-center
+                                    shadow-[3px_3px_6px_rgba(0,0,0,0.1)] dark:shadow-[4px_4px_10px_rgba(0,0,0,0.35)]"
                                 >
                                     <div className="h-4 w-4">{item.icon}</div>
                                 </Link>
@@ -51,7 +52,9 @@ const FloatingDockMobile = ({ items, className }) => {
             </AnimatePresence>
             <button
                 onClick={() => setOpen(!open)}
-                className="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center shadow-lg shadow-gray-200 dark:shadow-neutral-700"
+                className="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center
+                shadow-[4px_4px_10px_rgba(0,0,0,0.15)] dark:shadow-[5px_5px_15px_rgba(0,0,0,0.4)] hover:shadow-[5px_5px_12px_rgba(0,0,0,0.2)]
+                dark:hover:shadow-[6px_6px_16px_rgba(0,0,0,0.5)] transition-shadow"
             >
                 <IconLayoutNavbarCollapse className="h-5 w-5 text-neutral-500 dark:text-neutral-400" />
             </button>
@@ -65,7 +68,11 @@ const FloatingDockDesktop = ({ items, className }) => {
         <motion.div
             onMouseMove={(e) => mouseX.set(e.pageX)}
             onMouseLeave={() => mouseX.set(Infinity)}
-            className={cn("mx-auto hidden md:flex h-16 gap-4 items-end rounded-2xl bg-gray-50 dark:bg-neutral-900 px-4 pb-3 shadow-lg shadow-gray-200 dark:shadow-neutral-700", className)}
+            className={cn(
+                "mx-auto hidden md:flex h-16 gap-4 items-end rounded-2xl bg-gray-50 dark:bg-neutral-900 px-4 pb-3",
+                "shadow-[6px_6px_15px_rgba(0,0,0,0.15)] dark:shadow-[8px_8px_20px_rgba(0,0,0,0.35)]",
+                className
+            )}
         >
             {items.map((item) => (
                 <IconContainer mouseX={mouseX} key={item.title} {...item} />
@@ -103,7 +110,9 @@ function IconContainer({ mouseX, title, icon, href }) {
                 style={{ width, height }}
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
-                className="aspect-square rounded-full bg-gray-200 dark:bg-neutral-800 flex items-center justify-center relative shadow-md shadow-gray-300 dark:shadow-neutral-700"
+                className="aspect-square rounded-full bg-gray-200 dark:bg-neutral-800 flex items-center justify-center relative
+                shadow-[3px_3px_8px_rgba(0,0,0,0.15)] dark:shadow-[4px_4px_12px_rgba(0,0,0,0.4)] hover:shadow-[4px_4px_12px_rgba(0,0,0,0.2)]
+                dark:hover:shadow-[5px_5px_15px_rgba(0,0,0,0.5)] transition-shadow"
             >
                 <AnimatePresence>
                     {hovered && (
@@ -111,7 +120,9 @@ function IconContainer({ mouseX, title, icon, href }) {
                             initial={{ opacity: 0, y: 10, x: "-50%" }}
                             animate={{ opacity: 1, y: 0, x: "-50%" }}
                             exit={{ opacity: 0, y: 2, x: "-50%" }}
-                            className="px-2 py-0.5 whitespace-pre rounded-md bg-gray-100 border dark:bg-neutral-800 dark:border-neutral-900 dark:text-white border-gray-200 text-neutral-700 absolute left-1/2 -translate-x-1/2 -top-8 w-fit text-xs"
+                            className="px-2 py-0.5 whitespace-pre rounded-md bg-gray-100 dark:bg-neutral-800 dark:text-white
+                            text-neutral-700 absolute left-1/2 -translate-x-1/2 -top-8 w-fit text-xs
+                            shadow-[2px_2px_5px_rgba(0,0,0,0.1)] dark:shadow-[3px_3px_8px_rgba(0,0,0,0.3)]"
                         >
                             {title}
                         </motion.div>
