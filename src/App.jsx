@@ -8,6 +8,9 @@ import JuniorDevta from "./components/JuniorDevta.jsx";
 import SeniorDevta from "./components/SeniorDevta.jsx";
 import SeniorRisponse from "./components/SeniorRisponse.jsx";
 import Packages from "./components/Packages.jsx";
+import Ideation from "./components/Ideation.jsx";
+import Modularity from "./components/Modularity.jsx";
+import Technology from "./components/Technology.jsx";
 
 export default function App() {
     return(
@@ -23,6 +26,9 @@ export default function App() {
                     <Route path={"senior-devta/response"} element={<SeniorRisponse />} />
                     <Route path={"/quiz"} element={<Quiz/>} />
                     <Route path={"/package"} element={<Packages/>} />
+                    <Route path={"/idation"} element={<Ideation />} />
+                    <Route path={"/modularity"} element={<Modularity />} />
+                    <Route path={"/technology"} element={<Technology />} />
                 </Routes>
 
             </BrowserRouter>
