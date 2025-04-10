@@ -22,10 +22,10 @@ function Nav({ className }) {
             <Menu setActive={setActive}>
                 <Navbar setActive={setActive} active={active} item="About Us">
                     <div className="flex flex-col space-y-4 text-sm">
-                        <HoveredLink href="/web-dev">Web Development</HoveredLink>
-                        <HoveredLink href="/interface-design">Interface Design</HoveredLink>
-                        <HoveredLink href="/seo">Search Engine Optimization</HoveredLink>
-                        <HoveredLink href="/branding">Branding</HoveredLink>
+                        <HoveredLink href="/idation">IDIATION</HoveredLink>
+                        <HoveredLink href="/modularity">MODULARITY</HoveredLink>
+                        <HoveredLink href="/technology">TECHNOLOGYAA!</HoveredLink>
+                        <HoveredLink href="/modules">AI-MODULES</HoveredLink>
                     </div>
                 </Navbar>
 
@@ -60,11 +60,11 @@ function Nav({ className }) {
 
                 <Navbar setActive={setActive} active={active} item="Sign Up ">
                     <div className="flex flex-col space-y-4 text-sm">
-                        <HoveredLink href="/hobby">Hobby</HoveredLink>
-                        <HoveredLink href="/individual">Individual</HoveredLink>
-                        <HoveredLink href="/team">Team</HoveredLink>
-                        <HoveredLink href="/enterprise">Enterprise</HoveredLink>
-                        <HoveredLink href="http://localhost:5173/quiz">Quiz</HoveredLink>
+                        <HoveredLink href="/profile">PROFILE</HoveredLink>
+                        <HoveredLink href="http://localhost:5173/quiz">PHYCOMETRICS</HoveredLink>
+                        <HoveredLink href="/report">YOUR-REPORT</HoveredLink>
+                        <HoveredLink href="/package">PACKAGE</HoveredLink>
+                        <HoveredLink href="/logout">LOGOUT</HoveredLink>
                     </div>
                 </Navbar>
             </Menu>
