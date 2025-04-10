@@ -35,12 +35,12 @@ const JuniorDevta = () => {
             const data = {
                 "urls" : urls
             }
-            const res = await axios.post("http://localhost:5000/summarize_and_generate", data, {
+            const res = await axios.post("http://localhost:5000/junior_summarize_and_generate", data, {
                 headers: {"Content-Type": "application/json" },
             })
 
             setResponse(res.data);
-            navigate("/exam-devta/response", {state : {summary: res.data.summary, topic_summaries: res.data.topic_summaries, video_url: res.data.video_url}});
+            navigate("/junior-devta/response", {state : {summary: res.data.summary, topic_summaries: res.data.topic_summaries, video_url: res.data.video_url}});
 
         } catch (err){
             console.error("Error:", err);
