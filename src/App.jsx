@@ -20,6 +20,10 @@ import Login from "@/components/auth/loginPage.jsx";
 import Register from "@/components/auth/RegisterPage.jsx";
 import { auth } from "@/components/firebase";
 import Dashboard from "@/components/ui/Dashboard.jsx";
+import Packages from "@/components/Packages.jsx";
+import Ideation from "@/components/Ideation.jsx";
+import Modularity from "@/components/Modularity.jsx";
+import Technology from "@/components/Technology.jsx";
 
 export default function App() {
     return (
@@ -41,6 +45,10 @@ export default function App() {
                             <Route path="/login" element={<Login />} />
                             <Route path="/register" element={<Register />} />
                             <Route path="/home" element={<Dashboard />} />
+                            <Route path="/package" element={<Packages />} />
+                            <Route path="/ideation" element={<Ideation />} />
+                            <Route path={"/modularity"} element={<Modularity />} />
+                            <Route path={"/technology"} element={<Technology />} />
                             {/* Uncomment and adjust if you want Dashboard instead of Home */}
                             {/* <Route path="/home" element={<Dashboard />} /> */}
                         </Routes>
