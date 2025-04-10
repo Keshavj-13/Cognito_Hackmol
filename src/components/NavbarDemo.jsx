@@ -60,11 +60,11 @@ function Nav({ className }) {
 
                 <Navbar setActive={setActive} active={active} item="Sign Up ">
                     <div className="flex flex-col space-y-4 text-sm">
-                        <HoveredLink href="/login">LOGIN</HoveredLink>
+                        <HoveredLink href="/login">PROFILE</HoveredLink>
                         <HoveredLink href="http://localhost:5173/quiz">PHYCOMETRICS</HoveredLink>
                         <HoveredLink href="/report">YOUR-REPORT</HoveredLink>
                         <HoveredLink href="/package">PACKAGE</HoveredLink>
-                        <HoveredLink href="/logout">LOGOUT</HoveredLink>
+                        {/*<HoveredLink href="/logout">LOGOUT</HoveredLink>*/}
                     </div>
                 </Navbar>
             </Menu>
