@@ -29,7 +29,7 @@ export const Navbar = ({ setActive, active, item, children }) => {
                             <motion.div
                                 transition={transition}
                                 layoutId="active"
-                                className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl overflow-hidden border border-black/[0.2] dark:border-white/[0.2] shadow-xl"
+                                className="bg-black dark:bg-black backdrop-blur-sm rounded-2xl overflow-hidden border border-white/[0.2] dark:border-white/[0.2] shadow-xl"
                             >
                                 <motion.div layout className="w-max h-full p-4">
                                     {children}
@@ -80,7 +80,7 @@ export const HoveredLink = ({ children, ...rest }) => {
     return (
         <a
             {...rest}
-            className="text-neutral-700 dark:text-neutral-200 hover:text-amber-200"
+            className="text-gray-300 dark:text-neutral-200 hover:text-amber-200"
         >
             {children}
         </a>

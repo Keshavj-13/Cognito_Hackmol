@@ -1,18 +1,15 @@
-import Login from "../components/auth/loginPage.jsx";
-import Register from "../components/auth/RegisterPage.jsx";
+import Login from "@/components/auth/loginPage.jsx";
+import Register from "@/components/auth/RegisterPage.jsx";
 
-import Header from "../components/Header";
+import Header from "@/components/Header";
+import Home from "@/components/Home";
 
-import { AuthProvider } from "../contexts/authContext";
+import { AuthProvider } from "@/contexts/authContext";
 import { useRoutes } from "react-router-dom";
-import Homepage from "./Homepage.jsx";
 
-function App() {
+function LoginEndPage() {
     const routesArray = [
-        {
-            path: "*",
-            element: <Login />,
-        },
+
         {
             path: "/login",
             element: <Login />,
@@ -23,7 +20,7 @@ function App() {
         },
         {
             path: "/home",
-            element: <Homepage />,
+            element: <Home />,
         },
     ];
     let routesElement = useRoutes(routesArray);
@@ -35,4 +32,4 @@ function App() {
     );
 }
 
-export default App;
+export default LoginEndPage;

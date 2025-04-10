@@ -1,63 +1,57 @@
-import React, { useContext, useState, useEffect } from "react";
-import { auth } from "../../components/firebase";
-// import { GoogleAuthProvider } from "firebase/auth";
-import { onAuthStateChanged } from "firebase/auth";
+// src/contexts/authContext/index.jsx
+import { useState, useEffect, createContext, useContext } from "react";
+import {
+    getRedirectResult,
+    GoogleAuthProvider,
+    onAuthStateChanged,
+    signInWithRedirect,
+} from "firebase/auth";
+import { auth } from "@/components/firebase"; // Adjust if needed
 
-const AuthContext = React.createContext();
-
-export function useAuth() {
-    return useContext(AuthContext);
-}
+const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState(null);
-    const [userLoggedIn, setUserLoggedIn] = useState(false);
-    const [isEmailUser, setIsEmailUser] = useState(false);
-    const [isGoogleUser, setIsGoogleUser] = useState(false);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, initializeUser);
+        // 1. Check auth state (normal session persistence)
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            setCurrentUser(user);
+            setLoading(false);
+        });
+
+        // 2. Handle Google redirect result (once, on mount)
+        getRedirectResult(auth)
+            .then((result) => {
+                if (result && result.user) {
+                    setCurrentUser(result.user);
+                    // ✅ Optional: handle Firestore entry here
+                }
+            })
+            .catch((error) => {
+                console.error("Google redirect error:", error);
+            });
+
         return unsubscribe;
     }, []);
 
-    async function initializeUser(user) {
-        if (user) {
-
-            setCurrentUser({ ...user });
-
-            // check if provider is email and password login
-            const isEmail = user.providerData.some(
-                (provider) => provider.providerId === "password"
-            );
-            setIsEmailUser(isEmail);
-
-            // check if the auth provider is google or not
-            //   const isGoogle = user.providerData.some(
-            //     (provider) => provider.providerId === GoogleAuthProvider.PROVIDER_ID
-            //   );
-            //   setIsGoogleUser(isGoogle);
-
-            setUserLoggedIn(true);
-        } else {
-            setCurrentUser(null);
-            setUserLoggedIn(false);
-        }
-
-        setLoading(false);
-    }
-
     const value = {
-        userLoggedIn,
-        isEmailUser,
-        isGoogleUser,
         currentUser,
-        setCurrentUser
+        userLoggedIn: !!currentUser,
+        loginWithGoogle: () => {
+            const provider = new GoogleAuthProvider();
+            return signInWithRedirect(auth, provider);
+        },
     };
 
-    return (
-        <AuthContext.Provider value={value}>
-            {!loading && children}
-        </AuthContext.Provider>
-    );
+    return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>;
 }
+
+export const useAuth = () => {
+    const context = useContext(AuthContext);
+    if (!context) {
+        throw new Error("useAuth must be used within an AuthProvider");
+    }
+    return context;
+};

@@ -5,7 +5,8 @@ import {
     sendPasswordResetEmail,
     sendEmailVerification,
     updatePassword,
-    signInWithPopup,
+    signInWithRedirect,
+    getRedirectResult,
     GoogleAuthProvider,
 } from "firebase/auth";
 
@@ -17,12 +18,31 @@ export const doSignInWithEmailAndPassword = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
 };
 
-export const doSignInWithGoogle = async () => {
+// ✅ FIXED: Uses redirect instead of popup
+export const doSignInWithGoogle = () => {
     const provider = new GoogleAuthProvider();
-    const result = await signInWithPopup(auth, provider);
-    const user = result.user;
+    return signInWithRedirect(auth, provider);
+};
 
-    // add user to firestore
+// ✅ Handle the redirect result (call this in App or authContext)
+export const handleGoogleRedirectResult = async () => {
+    const result = await getRedirectResult(auth);
+    if (result && result.user) {
+        const user = result.user;
+
+        const displayName = user.displayName;
+        const email = user.email;
+        const photoURL = user.photoURL;
+
+        console.log("Name:", displayName);
+        console.log("Email:", email);
+        console.log("Profile Picture URL:", photoURL);
+
+        // optionally add to Firestore here
+
+        return user;
+    }
+    return null;
 };
 
 export const doSignOut = () => {
