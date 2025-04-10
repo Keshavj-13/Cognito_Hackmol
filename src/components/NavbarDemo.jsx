@@ -22,7 +22,7 @@ function Nav({ className }) {
             <Menu setActive={setActive}>
                 <Navbar setActive={setActive} active={active} item="About Us">
                     <div className="flex flex-col space-y-4 text-sm">
-                        <HoveredLink href="/idation">IDIATION</HoveredLink>
+                        <HoveredLink href="/ideation">IDIATION</HoveredLink>
                         <HoveredLink href="/modularity">MODULARITY</HoveredLink>
                         <HoveredLink href="/technology">TECHNOLOGYAA!</HoveredLink>
                         {/*<HoveredLink href="/modules">AI-MODULES</HoveredLink>*/}

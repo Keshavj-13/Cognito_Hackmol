@@ -5,7 +5,7 @@ const MyComponent = () => {
         <div style={styles.page}>
             <div style={styles.imageContainer}>
                 <img
-                    src="https://i.ibb.co/jZJ1S7mc/THE-STUDY-LOK-IDATION-2.png"
+                    src="https://i.ibb.co/jZJ1S7mc/THE-STUDY-LOK-IDEATION-2.png"
                     alt="Landing page"
                     style={styles.image}
                 />
