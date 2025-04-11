@@ -36,9 +36,9 @@ export default function App() {
                         <Routes>
                             <Route path="/" element={<Homepage />} />
                             <Route path="/exam-devta" element={<Backend />} />
-                            <Route path="/junior-devta" element={<JuniorDevta />} />
+                            {/*<Route path="/junior-devta" element={<JuniorDevta />} />*/}
                             <Route path="/senior-devta" element={<SeniorDevta />} />
-                            <Route path="/foundation-devta" element={<StayUpdated />} />
+                            {/*<Route path="/foundation-devta" element={<StayUpdated />} />*/}
                             <Route path="exam-devta/response" element={<ExamResponse />} />
                             <Route path="senior-devta/response" element={<SeniorRisponse />} />
                             <Route path="/quiz" element={<Quiz />} />

@@ -4,6 +4,24 @@ import GlowingEffect from "@/components/ui/GlowingEffect.jsx";
 
 export default function GlowingEffectDemo() {
     return (
+        <>
+            {/*<div className="w-full flex justify-center items-center gap-6 mt-8 mb-8">*/}
+
+            {/*    <button className="relative px-8 py-4 text-lg font-semibold text-white bg-gradient-to-br from-pink-500 via-red-500 to-yellow-500 rounded-full shadow-lg transition-all duration-300 hover:scale-105 hover:ring-4 hover:ring-pink-300/50 hover:shadow-2xl focus:outline-none">*/}
+            {/*        Learn at your Pace*/}
+            {/*    </button>*/}
+            {/*    <p className="text-white text-lg font-medium">*/}
+            {/*        This is the recommended Devta.*/}
+            {/*    </p>*/}
+            {/*</div>*/}
+            <div className="w-full flex justify-center items-center gap-5 mt-8 mb-8">
+                <button className="relative px-8 py-4 text-lg font-semibold text-white bg-gradient-to-br from-pink-500 via-red-500 to-yellow-500 rounded-full shadow-lg transition-all duration-300 hover:scale-105 hover:ring-4 hover:ring-pink-300/50 hover:shadow-2xl focus:outline-none translate-x-[-10px]">
+                    Learn at your Pace
+                </button>
+                <p className="text-white text-xl font-semibold">
+                    (This is the recommended Devta.)
+                </p>
+            </div>
         <ul className="grid grid-cols-1 grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:max-h-[34rem] xl:grid-rows-2">
 
             <GridItem
@@ -23,7 +41,7 @@ export default function GlowingEffectDemo() {
                 area="md:[grid-area:2/1/3/7] xl:[grid-area:1/9/3/13]"
                 icon={<Lock className="h-4 w-4 text-black dark:text-neutral-400" />}
                 title="Learn at your pace"
-                description="It's the best money you'll ever spend"
+                description="This section highlights the recommended Devta: Learn at your Pace. It’s meant to draw attention to the most suitable or suggested option out of all the Devtas listed. The button encourages users to consider this Devta, while the accompanying text reinforces its importance or value. It’s a way to guide users toward a choice that might suit them best, especially if they’re unsure which path to take."
             />
 
 
@@ -43,6 +61,8 @@ export default function GlowingEffectDemo() {
 
 
         </ul>
+
+        </>
     );
 }
 

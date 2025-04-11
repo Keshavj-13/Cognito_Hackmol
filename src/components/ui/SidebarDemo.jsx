@@ -143,11 +143,14 @@ import { motion } from "framer-motion"; // Corrected import
 import { cn } from "@/lib/utils";
 import {useAuth} from "@/contexts/authContext";
 import GlowingEffectDemo from "@/components/ui/GlowingEffectDemo.jsx";
+import {doSignOut} from "@/components/auth.js";
+import {useNavigate} from "react-router-dom";
 // import {auth} from "@/components/firebase.js";
 // import * as currentUser from "@material-tailwind/react/components/SpeedDial/index.js";
 
 export default function SidebarDemo() {
     const {currentUser} = useAuth()
+    const navigate = useNavigate()
     const links = [
         {
             label: "Dashboard",
@@ -172,10 +175,13 @@ export default function SidebarDemo() {
         },
         {
             label: "Logout",
-            href: "#",
+            type:"button",
             icon: (
                 <IconArrowLeft className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
             ),
+            onClick: () => {
+                doSignOut().then(() => {navigate('/')})
+            }
         },
     ];
     const [open, setOpen] = useState(false);
@@ -192,9 +198,30 @@ export default function SidebarDemo() {
                     <div className="flex flex-1 flex-col overflow-x-hidden overflow-y-auto bg-neutral-400 text-neutral-700 ">
                         <Logo />
                         <div className="mt-8 flex flex-col gap-2">
-                            {links.map((link, idx) => (
-                                <SidebarLink key={idx} link={link} />
-                            ))}
+                            {/*{links.map((link, idx) => (*/}
+                            {/*    <SidebarLink key={idx} link={link} />*/}
+                            {/*))}*/}
+                            <div className="mt-8 flex flex-col gap-2">
+                                {links.map((link, idx) => {
+                                    // Special case for Logout
+                                    if (link.label === "Logout") {
+                                        return (
+                                            <button
+                                                key={idx}
+                                                onClick={link.onClick}
+                                                className="flex items-center gap-2 px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:bg-neutral-300 dark:hover:bg-neutral-700 rounded-md transition"
+                                            >
+                                                {link.icon}
+                                                <span>{link.label}</span>
+                                            </button>
+                                        );
+                                    }
+
+                                    // Default SidebarLink rendering
+                                    return <SidebarLink key={idx} link={link} />;
+                                })}
+                            </div>
+
                         </div>
                     </div>
                     <div>

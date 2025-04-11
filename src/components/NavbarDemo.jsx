@@ -37,13 +37,13 @@ function Nav({ className }) {
                     <div className="text-sm grid grid-cols-2 gap-10 p-4">
                         <ProductItem
                             title="Junior Devta"
-                            href="http://localhost:5173/junior-devta"
+                            href="http://localhost:8502/"
                             src="https://i.ibb.co/23Q01vsM/juniornigga.jpg"
                             description="Prepare for tech interviews like never before."
                         />
                         <ProductItem
                             title="Exam Devta"
-                            href="http://localhost:5173/exam-devta"
+                            href="http://localhost:8501/"
                             src="https://i.ibb.co/FLndTbdj/exam.jpg"
                             description="Production-ready Tailwind CSS components for your next project."
                         />
@@ -55,7 +55,7 @@ function Nav({ className }) {
                         />
                         <ProductItem
                             title="Foundation Devta"
-                            href="http://localhost:5173/foundation-devta"
+                            href="http://localhost:8503/"
                             src={"https://i.ibb.co/PsvJNpYh/foundation.jpg"}
                             description="Respond to government RFPs, RFIs, and RFQs 10x faster using AI."
                         />
