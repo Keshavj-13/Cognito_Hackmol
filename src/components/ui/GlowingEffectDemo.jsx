@@ -15,9 +15,12 @@ export default function GlowingEffectDemo() {
             {/*    </p>*/}
             {/*</div>*/}
             <div className="w-full flex justify-center items-center gap-5 mt-8 mb-8">
-                <button className="relative px-8 py-4 text-lg font-semibold text-white bg-gradient-to-br from-pink-500 via-red-500 to-yellow-500 rounded-full shadow-lg transition-all duration-300 hover:scale-105 hover:ring-4 hover:ring-pink-300/50 hover:shadow-2xl focus:outline-none translate-x-[-10px]">
-                    Learn at your Pace
-                </button>
+                <a href="http://localhost:8501">
+                    <button className="relative px-8 py-4 text-lg font-semibold text-white bg-gradient-to-br from-pink-500 via-red-500 to-yellow-500 rounded-full shadow-lg transition-all duration-300 hover:scale-105 hover:ring-4 hover:ring-pink-300/50 hover:shadow-2xl focus:outline-none translate-x-[-10px]">
+                        Learn at your Pace
+                    </button>
+                </a>
+
                 <p className="text-white text-xl font-semibold">
                     (DEVTAS FOR YOU.)
                 </p>

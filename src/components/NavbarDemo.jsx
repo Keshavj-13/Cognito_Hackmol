@@ -49,7 +49,7 @@ function Nav({ className }) {
                         />
                         <ProductItem
                             title="Senior Devta"
-                            href="http://localhost:5173/senior-devta"
+                            href="http://localhost:8504"
                             src="https://i.ibb.co/d0ZFmXh6/senior.jpg"
                             description="Never write from scratch again. Go from idea to blog in minutes."
                         />
