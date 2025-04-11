@@ -54,7 +54,7 @@ export const Header = () => {
             <p className="max-w-2xl text-base md:text-xl mt-8">
                 {/*Whether you're a student, professional or lifelong learner,so at STUDY LOK*/}
                 <span className="text-[2.5rem]">
-    Let's{" "}
+    Let's{"  "}
                     <FlipWords
                         words={words}
                         className="text-yellow-500 "  // Pass directly to component
