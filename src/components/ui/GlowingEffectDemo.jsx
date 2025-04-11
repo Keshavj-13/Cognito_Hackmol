@@ -15,7 +15,7 @@ export default function GlowingEffectDemo() {
             {/*    </p>*/}
             {/*</div>*/}
             <div className="w-full flex justify-center items-center gap-5 mt-8 mb-8">
-                <a href="http://localhost:8505">
+                <a href="http://localhost:8506">
                     <button className="relative px-8 py-4 text-lg font-semibold text-white bg-gradient-to-br from-pink-500 via-red-500 to-yellow-500 rounded-full shadow-lg transition-all duration-300 hover:scale-105 hover:ring-4 hover:ring-pink-300/50 hover:shadow-2xl focus:outline-none translate-x-[-10px]">
                         Learn at your Pace
                     </button>
@@ -31,7 +31,7 @@ export default function GlowingEffectDemo() {
                 area="md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]"
                 icon={<Box className="h-4 w-4 text-black dark:text-neutral-400" />}
                 title="Junior Devta"
-                description="Running out of copy so I'll write anything."
+                description="Creating Fun Environment to learn and grow."
                 href="http://localhost:8502"
 
             />
@@ -40,14 +40,14 @@ export default function GlowingEffectDemo() {
                 area="md:[grid-area:1/7/2/13] xl:[grid-area:1/5/2/9]"
                 icon={<Settings className="h-4 w-4 text-black dark:text-neutral-400" />}
                 title="Senior Devta"
-                description="Yes, it's true. I'm not even kidding. Ask my mom if you don't believe me."
+                description="In every language for everyone's learning journey"
                 href="http://localhost:8504"
 
             />
             <GridItem
                 area="md:[grid-area:2/1/3/7] xl:[grid-area:1/9/3/13]"
                 icon={<Lock className="h-4 w-4 text-black dark:text-neutral-400" />}
-                title="Learn at your pace"
+                title="Anthropomorphize Learning"
                 description="This section highlights the recommended Devta: Learn at your Pace. It’s meant to draw attention to the most suitable or suggested option out of all the Devtas listed. The button encourages users to consider this Devta, while the accompanying text reinforces its importance or value. It’s a way to guide users toward a choice that might suit them best, especially if they’re unsure which path to take."
             />
 
@@ -56,7 +56,7 @@ export default function GlowingEffectDemo() {
                 area="md:[grid-area:2/7/3/13] xl:[grid-area:2/1/3/5]"
                 icon={<Sparkles className="h-4 w-4 text-black dark:text-neutral-400" />}
                 title="Foundation Devta"
-                description="I'm not even kidding. Ask my mom if you don't believe me."
+                description="Ready to learn the core concepts."
                 href="http://localhost:8503"
             />
 
@@ -64,7 +64,7 @@ export default function GlowingEffectDemo() {
                 area="md:[grid-area:3/1/4/13] xl:[grid-area:2/5/3/9]"
                 icon={<Search className="h-4 w-4 text-black dark:text-neutral-400" />}
                 title="Exam Devta"
-                description="I'm writing the code as I record this, no shit."
+                description="Lets Start Preparing"
                 href="http://localhost:8501"
             />
 

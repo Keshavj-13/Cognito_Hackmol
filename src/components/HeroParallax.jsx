@@ -57,7 +57,7 @@ export const Header = () => {
     Let's{" "}
                     <FlipWords
                         words={words}
-                        className="text-[#a97a1c] opacity-80"  // Pass directly to component
+                        className="text-yellow-500 "  // Pass directly to component
                     />
     knowledge
 </span>
