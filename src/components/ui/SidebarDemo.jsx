@@ -156,7 +156,7 @@ export default function SidebarDemo() {
             label: "Dashboard",
             href: "#",
             icon: (
-                <IconBrandTabler className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+                <IconBrandTabler className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200 font-extrabold" />
             ),
         },
         {
@@ -195,7 +195,7 @@ export default function SidebarDemo() {
         >
             <Sidebar open={open} setOpen={setOpen} animate={false}>
                 <SidebarBody className="justify-between gap-10">
-                    <div className="flex flex-1 flex-col overflow-x-hidden overflow-y-auto bg-neutral-400 text-neutral-700 ">
+                    <div className="flex flex-1 flex-col overflow-x-hidden overflow-y-auto bg-neutral-100 text-neutral-700 ">
                         <Logo />
                         <div className="mt-8 flex flex-col gap-2">
                             {/*{links.map((link, idx) => (*/}
